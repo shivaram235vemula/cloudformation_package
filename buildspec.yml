@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  variables:
+    CFN_TEMPLATE: template.yml
+    OUTPUT_TEMPLATE: packaged-template.yml
+    S3_BUCKET: my-codepipeline-s3-artificat-bucket      # Replace with your actual S3 bucket name
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - pip install --upgrade awscli
+
+  build:
+    commands:
+      - echo Packaging CloudFormation template...
+      - aws cloudformation package \
+          --template-file $CFN_TEMPLATE \
+          --output-template-file $OUTPUT_TEMPLATE \
+          --s3-bucket $S3_BUCKET \
+          --s3-prefix codepipeline
+
+  post_build:
+    commands:
+      - echo Deploying the packaged template...
+      - aws cloudformation deploy \
+          --template-file $OUTPUT_TEMPLATE \
+          --stack-name MyLambdaStack \
+          --capabilities CAPABILITY_NAMED_IAM
