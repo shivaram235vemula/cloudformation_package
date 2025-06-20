@@ -10,7 +10,7 @@ Resources:
       Runtime: python3.11
       Role: arn:aws:iam::243599567017:role/LambdaRoleWithAdminAccess  # Replace with your IAM role ARN
       Code:
-        S3Bucket: PLACEHOLDER_BUCKET     # Will be filled by `aws cloudformation package`
+        S3Bucket: my-codepipeline-s3-artifact-bucket     # Will be filled by `aws cloudformation package`
         S3Key: PLACEHOLDER_KEY           # Will be filled by `aws cloudformation package`
       Timeout: 5
       MemorySize: 128
