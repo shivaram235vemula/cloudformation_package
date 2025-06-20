@@ -4,7 +4,7 @@ env:
   variables:
     CFN_TEMPLATE: template.yml
     OUTPUT_TEMPLATE: packaged-template.yml
-    S3_BUCKET: my-codepipeline-s3-artificat-bucket      # Replace with your actual S3 bucket name
+    S3_BUCKET: my-codepipeline-s3-artificat-bucket   # Replace with your actual S3 bucket name
 
 phases:
   install:
