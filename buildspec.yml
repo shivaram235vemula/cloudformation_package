@@ -16,16 +16,11 @@ phases:
   build:
     commands:
       - echo Packaging CloudFormation template...
-      - aws cloudformation package \
-          --template-file $CFN_TEMPLATE \
-          --output-template-file $OUTPUT_TEMPLATE \
-          --s3-bucket $S3_BUCKET \
-          --s3-prefix codepipeline
+      - aws cloudformation package --template-file $CFN_TEMPLATE --output-template-file $OUTPUT_TEMPLATE --s3-bucket $S3_BUCKET --s3-prefix codepipeline
 
   post_build:
     commands:
       - echo Deploying the packaged template...
-      - aws cloudformation deploy \
-          --template-file $OUTPUT_TEMPLATE \
-          --stack-name MyLambdaStack \
-          --capabilities CAPABILITY_NAMED_IAM
+      - aws cloudformation deploy --template-file $OUTPUT_TEMPLATE --stack-name MyLambdaStack --capabilities CAPABILITY_NAMED_IAM
+
+
